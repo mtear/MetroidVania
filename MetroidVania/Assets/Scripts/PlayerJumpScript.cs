@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerJumpScript : MonoBehaviour {
 
-    bool jumping = false, grounded = true;
-    int maxjumpingframes = 15, jumpingframes = 15;
-    float jumpspeed = 60;
+    public bool jumping = false;
+    int maxjumpingframes = 12, jumpingframes = 12;
+    float jumpspeed = 120;
 
     Rigidbody rigidBody;
+
+    public bool grounded = false;
 
     // Use this for initialization
     void Start () {

@@ -1,0 +1,4 @@
+Dampening
+falling ledge double jump
+stick in wall when try to jump
+super short hop

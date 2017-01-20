@@ -1,3 +1,5 @@
+fix layer mask
+rays from the side
 Dampening
 falling ledge double jump
 stick in wall when try to jump

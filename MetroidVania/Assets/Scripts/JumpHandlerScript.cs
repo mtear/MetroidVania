@@ -5,36 +5,40 @@ using UnityEngine;
 public class JumpHandlerScript : MonoBehaviour {
 
     PlayerJumpScript js;
+    Rigidbody rigidBody;
+    BoxCollider bc;
 
-    bool countingdown = false;
-
-    int maxframes = 3, currentframes = 3;
+    Vector3 velocity = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
-        js = this.transform.parent.GetComponent<PlayerJumpScript>();
+        js = GetComponent<PlayerJumpScript>();
+        rigidBody = GetComponent<Rigidbody>();
+        bc = GetComponent<BoxCollider>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if (countingdown)
+	void FixedUpdate () {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        float d = velocity.y;
+        d = rigidBody.velocity.y;
+        d = Mathf.Abs(d);
+        RaycastHit info;
+
+        int mask = LayerMask.NameToLayer("Ground");
+
+        bool itembelow = Physics.Raycast(ray, out info, 5);
+
+        Debug.Log(itembelow);
+
+        if (itembelow)
         {
-            currentframes--;
-            if(currentframes == 0)
+            Debug.Log(info.distance);
+            if(info.distance <= bc.size.y / 2)
             {
                 js.grounded = true;
-                countingdown = false;
             }
         }
 	}
 
-    void OnTriggerStay(Collider other)
-    {
-        if(!countingdown && !js.grounded && !js.jumping && other.tag == "Ground")
-        {
-            Debug.Log("here");
-            countingdown = true;
-            currentframes = maxframes;
-        }
-    }
 }

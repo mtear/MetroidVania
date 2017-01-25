@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerJumpScript : MonoBehaviour {
 
     public bool jumping = false;
-    int maxjumpingframes = 12, jumpingframes = 12;
+    int maxjumpingframes = 12;
+    public int jumpingframes = 12;
     float jumpspeed = 120;
 
     Rigidbody rigidBody;
@@ -32,11 +33,11 @@ public class PlayerJumpScript : MonoBehaviour {
                 {
                     rigidBody.velocity = rigidBody.velocity + Vector3.up * Time.deltaTime * jumpspeed * ((float)jumpingframes / (float)maxjumpingframes);
                 }
-                else
-                {
-                    jumping = false;
-                    jumpingframes = maxjumpingframes;
-                }
+            }
+            if(jumpingframes == 0)
+            {
+                jumping = false;
+                jumpingframes = maxjumpingframes;
             }
         }
         else

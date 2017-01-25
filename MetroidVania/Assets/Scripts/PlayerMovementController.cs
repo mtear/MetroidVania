@@ -10,14 +10,10 @@ public class PlayerMovementController : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody>();
 	}
 
-
     Vector3 v = Vector3.zero;
     float speed = 5.5f;
 	
-	// Update is called once per frame
 	void Update () {
-        //rigidBody.velocity -= v;
-
 		if (Input.GetKey(KeyCode.LeftArrow)) {
 			v = Vector3.left * speed;
 		}else if (Input.GetKey(KeyCode.RightArrow)) {
@@ -27,12 +23,9 @@ public class PlayerMovementController : MonoBehaviour {
             v = Vector3.zero;
         }
 
-	}
-
-    void FixedUpdate()
-    {
         var vel = rigidBody.velocity;
         vel.x = 0; vel.z = 0;
         rigidBody.velocity = vel + v;
     }
+
 }

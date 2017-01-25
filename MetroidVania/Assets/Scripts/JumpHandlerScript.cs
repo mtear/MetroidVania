@@ -5,40 +5,28 @@ using UnityEngine;
 public class JumpHandlerScript : MonoBehaviour {
 
     PlayerJumpScript js;
-    Rigidbody rigidBody;
     BoxCollider bc;
+    int mask;
 
-    Vector3 velocity = Vector3.zero;
-
-	// Use this for initialization
-	void Start () {
+    void Start () {
         js = GetComponent<PlayerJumpScript>();
-        rigidBody = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
-	}
+        mask = LayerMask.GetMask("Ground");
+    }
 	
-	// Update is called once per frame
 	void FixedUpdate () {
-        Ray ray = new Ray(transform.position, Vector3.down);
-        float d = velocity.y;
-        d = rigidBody.velocity.y;
-        d = Mathf.Abs(d);
-        RaycastHit info;
+        if (js.jumping && js.jumpingframes > 6) return;
 
-        int mask = LayerMask.NameToLayer("Ground");
+        Ray ray1 = new Ray(transform.position, Vector3.down);
+        Ray ray2 = new Ray(transform.position + new Vector3(bc.size.x/2f-0.01f,0,0), Vector3.down);
+        Ray ray3 = new Ray(transform.position - new Vector3(bc.size.x /2f-0.01f, 0, 0), Vector3.down);
+        RaycastHit info1, info2, info3;
 
-        bool itembelow = Physics.Raycast(ray, out info, 5);
+        bool itembelow = Physics.Raycast(ray1, out info1, bc.size.y/2f, mask);
+        itembelow = itembelow || Physics.Raycast(ray2, out info2, bc.size.y / 2f, mask);
+        itembelow = itembelow || Physics.Raycast(ray3, out info3, bc.size.y / 2f, mask);
 
-        Debug.Log(itembelow);
-
-        if (itembelow)
-        {
-            Debug.Log(info.distance);
-            if(info.distance <= bc.size.y / 2)
-            {
-                js.grounded = true;
-            }
-        }
+        js.grounded = itembelow;
 	}
 
 }

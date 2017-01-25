@@ -1,6 +1,6 @@
-fix layer mask
-rays from the side
-Dampening
-falling ledge double jump
-stick in wall when try to jump
-super short hop
+Push big blocks with drag
+Double jump on/off
+crouch
+slide on/off
+glide on/off
+Moving platforms

@@ -4,3 +4,14 @@ crouch
 slide on/off
 glide on/off
 Moving platforms
+airdash
+Kick move
+
+
+Accomplished:
++Wall Jump
++Fixed movement quirks
++Fixed velocity in PlayerMovementController to be in time slices
++Added horizontal drag
++Added horizontal terminal velocity
++Added wall slide drag

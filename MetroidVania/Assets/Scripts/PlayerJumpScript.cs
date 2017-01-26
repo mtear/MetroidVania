@@ -44,9 +44,19 @@ public class PlayerJumpScript : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.A) && grounded)
             {
-                jumping = true;
-                grounded = false;
+                Jump();
             }
         }
+    }
+
+    public void Jump()
+    {
+        jumping = true;
+        grounded = false;
+        jumpingframes = maxjumpingframes;
+
+        var vel = rigidBody.velocity;
+        vel.y = 0;
+        rigidBody.velocity = vel;
     }
 }

@@ -79,6 +79,8 @@
     <Compile Include="Assets\Scripts\PlayerJumpScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMovementController.cs" />
     <Compile Include="Assets\Scripts\TerminalVelocityHandler.cs" />
+    <Compile Include="Assets\Scripts\WallDragScript.cs" />
+    <Compile Include="Assets\Scripts\WallJumpScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TODO.txt" />

@@ -11,7 +11,7 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
     Vector3 v = Vector3.zero;
-    float speed = 5.5f;
+    float speed = 60f;
 	
 	void Update () {
 		if (Input.GetKey(KeyCode.LeftArrow)) {
@@ -24,8 +24,8 @@ public class PlayerMovementController : MonoBehaviour {
         }
 
         var vel = rigidBody.velocity;
-        vel.x = 0; vel.z = 0;
-        rigidBody.velocity = vel + v;
+        vel.x *= 0.785f;
+        rigidBody.velocity = vel + v*Time.deltaTime;
     }
 
 }
